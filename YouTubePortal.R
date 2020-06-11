@@ -5,9 +5,9 @@
 #
 # returns the video id of the first matched video
 searchVideo <- function(title, param) {
-  # Gets the ID of the first video that matches the search params
   search_string <- paste(title, param)
-  res <- GET("https://www.googleapis.com/youtube/v3/search?",
+  print(search_string)
+  res <- httr::GET("https://www.googleapis.com/youtube/v3/search?",
     query = list(
       key = Sys.getenv("GOOGLE_API_KEY"),
       part = "snippet",

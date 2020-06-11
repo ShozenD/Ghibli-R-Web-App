@@ -108,6 +108,10 @@ criticBarPlot <- function(id) {
 #
 # return Word cloud plot
 generateWordCloud <- function(title, max_words) {
+  # Adding stopwords
+  new_stop_words <- c("film", "films", "movie", "animation", "animations")
+  stop_words <- rbind(stop_words, tibble(word=new_stop_words, lexicon="SMART"))
+  
   return(
     IMDb.Ghibli.Reviews %>% 
       filter(title == title) %>%
