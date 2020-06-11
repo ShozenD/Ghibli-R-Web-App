@@ -4,6 +4,11 @@ IMDb.root.link <- "https://www.imdb.com"
 # connect to database
 IMDb.Ghibli.Reviews <- collect(tbl(mydb, "IMDb.Ghibli.Reviews"))
 
+# Scrapes information from the IMDb website
+#
+# @params title the movie title
+#
+# returns a named list containing information on the movie id, rating, rating count, and one review
 getIMDbReview <- function(title) {
   q <- str_replace_all(title, "\\s", "+")
   search.html <- read_html(str_glue("https://www.imdb.com/find?q={q}", q = q))
@@ -44,6 +49,11 @@ getIMDbReview <- function(title) {
   )
 }
 
+# Scrapes the meta critic review from the IMDb website
+#
+# @params id the id obtained via the getIMDbReview()
+#
+# returns a tibble containing the meta critic stats
 getCriticReview <- function(id) {
   critic.html <- read_html(paste0(IMDb.root.link, id, "criticreviews"))
 
@@ -173,6 +183,12 @@ getReview5gram <- function(title) {
   return(pentagram)
 }
 
+# A wrapper for the n gram functions
+#
+# @params title the movie title
+# @params the number of tokens 
+#
+# returns the specified n gramm
 getNGram <- function(title, n) {
   if(n == 2) {
     return(getReviewBigram(title))

@@ -1,3 +1,9 @@
+# Uses the YouTube Data API to search for videos
+#
+# @params title the film title
+# @params param othe search keywords such as "trailer" or "theme song"
+#
+# returns the video id of the first matched video
 searchVideo <- function(title, param) {
   # Gets the ID of the first video that matches the search params
   search_string <- paste(title, param)
@@ -16,6 +22,11 @@ searchVideo <- function(title, param) {
   return(id)
 }
 
+# Obtains the video statistics
+#
+# @params id the id of the video
+# 
+# returns a dataframe containing video statistics
 getVideoStats <- function(id) {
   # Gets the statistics of a certain video by specifying its id
   res <- GET("https://www.googleapis.com/youtube/v3/videos?",
@@ -38,6 +49,11 @@ getVideoStats <- function(id) {
   return(video.stats)
 }
 
+# Obtains the video comments
+#
+# @params id the id of the video
+# 
+# returns a data frame containing 100 video comments
 getVideoComments <- function(id) {
   res <- GET("https://www.googleapis.com/youtube/v3/commentThreads?",
     query = list(

@@ -38,7 +38,7 @@ The links to the posters for the movies were obtained from the official studio g
 ## Database
 ### Google Cloud Postgre SQL Database
 
-<img src="./www/dbimage.png" alt="db image" width="200">
+<img src="./www/dbimage.png" alt="db image" width="300">
 
 The data is stored on a google cloud SQL database. The database contains two basic tables as shown above. They are collected from the database and loaded in the local environment when the app starts. The database is updated automatically at 0:00 a.m. on the first day of every month via CRON job. Refer to `cron.R` and `cron.yaml` for code.
 
