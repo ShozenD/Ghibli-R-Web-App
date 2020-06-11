@@ -19,6 +19,7 @@ source("YouTubePortal.R", local = TRUE)
 source("IMDbPortal.R", local = TRUE)
 readRenviron(".Renviron")
 
+### UI ###
 ui <- fluidPage(theme = shinytheme("darkly"),
   tags$h1("Studio Ghibli Films"),
   sidebarPanel(
@@ -101,6 +102,7 @@ ui <- fluidPage(theme = shinytheme("darkly"),
   tags$p("Keio University, Environmental and Information Sciences")
 )
 
+### server ###
 server <- function(input, output, session) {
 
   observeEvent(input$film, {
@@ -237,4 +239,5 @@ server <- function(input, output, session) {
   }, deleteFile = FALSE)
 }
 
+### application ###
 shinyApp(ui, server)

@@ -202,12 +202,14 @@ getNGram <- function(title, n) {
 }
 
 
-# Get the three most similar films based on IMDb reviews
+# Calculates the similarity between films using cosine distance
 #
 # @params title film title
-# @params n number of similar films (max=3)
+# @params n number of similar films
 #
-# return a named list
+# Note: similarity is defined as 1 - dissmilarity
+#
+# returns a dataframe
 getSimilarFilm <- function(film.title, n) {
   reviews.token <- IMDb.Ghibli.Reviews %>%
     unnest_tokens(word, review) %>%
